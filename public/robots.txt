@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap (update the host to your production URL if different)
+Sitemap: https://bod-republic.netlify.app/sitemap.xml

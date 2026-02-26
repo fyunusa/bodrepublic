@@ -1,15 +1,18 @@
 import { motion } from 'framer-motion'
 import {
   ArrowUpRight,
+  Facebook,
   Instagram,
   Linkedin,
   Mail,
+  MessageCircle,
   Music2,
   Phone,
   Youtube,
 } from 'lucide-react'
 
 import { site } from '../config/site'
+import { useDocumentHead } from '../lib/useDocumentHead'
 
 const container = {
   hidden: { opacity: 0 },
@@ -44,6 +47,26 @@ type SocialCard = {
 function socialCards(): SocialCard[] {
   const s = site.social
   const cards: SocialCard[] = []
+  if (s.facebook && s.facebookHandle) {
+    cards.push({
+      key: 'facebook',
+      label: 'Facebook',
+      handle: s.facebookHandle,
+      href: s.facebook,
+      Icon: Facebook,
+      color: 'hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2]',
+    })
+  }
+  if (s.whatsapp && s.whatsappHandle) {
+    cards.push({
+      key: 'whatsapp',
+      label: 'WhatsApp',
+      handle: s.whatsappHandle,
+      href: s.whatsapp,
+      Icon: MessageCircle,
+      color: 'hover:bg-[#25D366] hover:text-white hover:border-[#25D366]',
+    })
+  }
   if (s.x && s.xHandle) {
     cards.push({
       key: 'x',
@@ -98,6 +121,12 @@ function socialCards(): SocialCard[] {
 }
 
 export function Connect() {
+  useDocumentHead({
+    title: 'Connect',
+    description: `Connect with B.O.D Republic. Email, phone, and social links: X, Instagram, TikTok, YouTube, Facebook, WhatsApp. ${site.tagline}`,
+    path: '/connect',
+  })
+
   const cards = socialCards()
 
   return (

@@ -1,8 +1,16 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { LinkButton } from '../components/ui/LinkButton'
+import { useDocumentHead } from '../lib/useDocumentHead'
 
 export function NotFound() {
+  useDocumentHead({
+    title: 'Page not found',
+    description: 'The page you are looking for does not exist. B.O.D Republic.',
+    path: '/404',
+    noIndex: true,
+  })
+
   return (
     <div className="container py-16 sm:py-20">
       <div className="mx-auto max-w-3xl">

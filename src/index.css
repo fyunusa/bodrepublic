@@ -33,7 +33,7 @@
   }
 
   ::selection {
-    @apply bg-brand-200/60 text-brand-900;
+    @apply bg-indigo-200/70 text-indigo-950;
   }
 
   a {
@@ -47,7 +47,7 @@
   }
 
   .surface-hover {
-    @apply surface transition-all duration-300 hover:shadow-2xl hover:shadow-brand-200/20 hover:border-brand-200/60 hover:-translate-y-0.5;
+    @apply surface transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-200/20 hover:border-indigo-200/60 hover:-translate-y-0.5;
   }
 
   .gradient-text {

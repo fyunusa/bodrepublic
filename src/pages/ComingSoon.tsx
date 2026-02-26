@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { Button } from '../components/ui/Button'
 import { cn } from '../lib/cn'
 import { mailto, site } from '../config/site'
+import { useDocumentHead } from '../lib/useDocumentHead'
 
 type ComingSoonProps = {
   title: string
@@ -15,6 +16,13 @@ type ComingSoonProps = {
 export function ComingSoon({ title, subtitle }: ComingSoonProps) {
   const location = useLocation()
   const [email, setEmail] = useState('')
+
+  useDocumentHead({
+    title,
+    description: subtitle ?? `This page is coming soon. B.O.D Republic — ${site.tagline}`,
+    path: location.pathname,
+    noIndex: true,
+  })
 
   const hint = useMemo(() => {
     const params = new URLSearchParams(location.search)
