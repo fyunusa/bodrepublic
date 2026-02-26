@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { SiteLayout } from './components/layout/SiteLayout'
 import { ComingSoon } from './pages/ComingSoon'
+import { Connect } from './pages/Connect'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
 
@@ -30,6 +31,7 @@ export default function App() {
           path="/advertise"
           element={<ComingSoon title="Advertise with B.O.D" subtitle="Partnership options for brands and creators." />}
         />
+        <Route path="/connect" element={<Connect />} />
 
         <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFound />} />
