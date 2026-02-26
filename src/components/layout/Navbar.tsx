@@ -59,7 +59,7 @@ export function Navbar() {
               >
                 {item.label}
                 {item.soon ? (
-                  <span className="ml-2 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-bold tracking-wide text-white/60">
+                  <span className="ml-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-bold tracking-wide text-slate-500">
                     SOON
                   </span>
                 ) : null}
@@ -68,14 +68,6 @@ export function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <LinkButton
-              to="/community?feature=birthday-twin"
-              variant="ghost"
-              size="md"
-              className="border border-white/10"
-            >
-              Find your Birthday Twin
-            </LinkButton>
             <LinkButton to="/community" variant="primary" size="md">
               Join the Republic
             </LinkButton>
@@ -122,14 +114,6 @@ export function Navbar() {
               </div>
 
               <div className="mt-3 grid gap-2 px-1 pb-1">
-                <LinkButton
-                  to="/community?feature=birthday-twin"
-                  variant="secondary"
-                  size="md"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Find your Birthday Twin
-                </LinkButton>
                 <LinkButton
                   to="/community"
                   variant="primary"

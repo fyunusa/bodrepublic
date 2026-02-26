@@ -16,7 +16,7 @@ export default function App() {
         />
         <Route
           path="/community"
-          element={<ComingSoon title="Community Hub" subtitle="Citizen perks, games, and the Birthday Twin experience." />}
+          element={<ComingSoon title="Community Hub" subtitle="Citizen perks, games, and community experiences." />}
         />
         <Route
           path="/media"
