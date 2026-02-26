@@ -7,11 +7,11 @@ type Size = 'sm' | 'md' | 'lg'
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-gradient-to-b from-fuchsia-400 to-fuchsia-500 text-slate-950 shadow-[0_0_0_1px_rgba(255,255,255,0.15),0_20px_50px_-25px_rgba(217,70,239,0.65)] hover:from-fuchsia-300 hover:to-fuchsia-500',
+    'bg-gradient-to-b from-fuchsia-500 to-fuchsia-600 text-white shadow-[0_18px_45px_-25px_rgba(219,39,119,0.7)] hover:from-fuchsia-500 hover:to-fuchsia-500',
   secondary:
-    'bg-white/10 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.08)] hover:bg-white/15',
+    'bg-white text-slate-900 border border-slate-200 hover:bg-slate-50',
   ghost:
-    'bg-transparent text-white/90 hover:bg-white/10 shadow-[0_0_0_1px_rgba(255,255,255,0.08)]',
+    'bg-transparent text-slate-700 hover:bg-slate-100 border border-transparent',
 }
 
 const sizeClasses: Record<Size, string> = {
@@ -35,7 +35,7 @@ export function LinkButton({
   return (
     <Link
       className={cn(
-        'no-underline inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950',
+        'no-underline inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white',
         variantClasses[variant],
         sizeClasses[size],
         className,
