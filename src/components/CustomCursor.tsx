@@ -73,38 +73,65 @@ export function CustomCursor() {
 
   if (!isVisible) return null
 
+  const outerGlowStyle: React.CSSProperties = {
+    position: 'fixed',
+    width: '32px',
+    height: '32px',
+    pointerEvents: 'none',
+    zIndex: 9998,
+    borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(99, 102, 241, 0.2), transparent)',
+    boxShadow: 'inset 0 0 20px rgba(99, 102, 241, 0.3)',
+  }
+
+  const mainCursorStyle: React.CSSProperties = {
+    position: 'fixed',
+    width: '24px',
+    height: '24px',
+    pointerEvents: 'none',
+    zIndex: 9999,
+    borderRadius: '50%',
+    border: '2px solid',
+    borderColor: 'var(--primary)',
+    background: 'radial-gradient(circle, rgba(0, 240, 255, 0.3), rgba(0, 240, 255, 0.1))',
+    boxShadow: '0 0 12px rgba(0, 240, 255, 0.5), inset 0 0 8px rgba(0, 240, 255, 0.3)',
+    backdropFilter: 'blur(2px)',
+  }
+
   return (
     <>
       {/* Outer glow ring */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9998]"
         style={{
+          ...outerGlowStyle,
           left: cursorXSpring,
           top: cursorYSpring,
         }}
-      >
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/30 via-purple-500/20 to-pink-500/30 blur-lg animate-pulse" />
-      </motion.div>
+      />
 
       {/* Main cursor circle */}
       <motion.div
-        className="fixed top-0 left-0 w-6 h-6 pointer-events-none z-[9999]"
         style={{
+          ...mainCursorStyle,
           left: cursorXSpring,
           top: cursorYSpring,
         }}
         variants={variants}
         animate={isClicking ? 'click' : cursorVariant}
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-      >
-        <div className="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 bg-clip-border shadow-lg shadow-indigo-500/50" />
-        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400 opacity-60" />
-      </motion.div>
+      />
 
       {/* Inner dot */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 pointer-events-none z-[9999]"
         style={{
+          position: 'fixed',
+          width: '6px',
+          height: '6px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(0, 240, 255, 0.4))',
+          pointerEvents: 'none',
+          zIndex: 9999,
+          boxShadow: '0 0 6px rgba(255, 255, 255, 0.6)',
           left: cursorXSpring,
           top: cursorYSpring,
         }}
@@ -113,9 +140,7 @@ export function CustomCursor() {
           opacity: isClicking ? 1 : 0.6,
         }}
         transition={{ type: 'spring', stiffness: 600, damping: 30 }}
-      >
-        <div className="w-full h-full rounded-full bg-white/80 shadow-md shadow-white/50" />
-      </motion.div>
+      />
     </>
   )
 }

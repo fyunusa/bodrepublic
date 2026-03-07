@@ -123,26 +123,135 @@ function socialCards(): SocialCard[] {
 export function Connect() {
   useDocumentHead({
     title: 'Connect',
-    description: `Connect with B.O.D Republic. Email, phone, and social links: X, Instagram, TikTok, YouTube, Facebook, WhatsApp. ${site.tagline}`,
+    description: `Connect with B.O.D Republic. Email, phone, and social. ${site.tagline}`,
     path: '/connect',
   })
 
   const cards = socialCards()
 
+  const styles = {
+    wrapper: {
+      position: 'relative' as const,
+      minWidth: '0',
+      width: '100%',
+    },
+    section: {
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '3rem 2rem',
+    } as React.CSSProperties,
+    headerContainer: {
+      maxWidth: '800px',
+      margin: '0 auto',
+      textAlign: 'center' as const,
+    } as React.CSSProperties,
+    title: {
+      fontFamily: 'var(--font-display)',
+      fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+      fontWeight: 700,
+      color: 'var(--text-primary)',
+      marginBottom: '1rem',
+    } as React.CSSProperties,
+    subtitle: {
+      marginTop: '0.75rem',
+      color: 'var(--text-secondary)',
+      fontSize: '1.1rem',
+      lineHeight: '1.6',
+    } as React.CSSProperties,
+    cardsGrid: {
+      maxWidth: '1000px',
+      margin: '3rem auto',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+      gap: '1.5rem',
+    } as React.CSSProperties,
+    card: {
+      display: 'flex',
+      flexDirection: 'column' as const,
+      justifyContent: 'space-between',
+      minHeight: '140px',
+      padding: '1.5rem',
+      background: 'var(--bg-card)',
+      border: '1px solid var(--border-color)',
+      borderRadius: '12px',
+      textDecoration: 'none',
+      transition: 'all 0.3s ease',
+      color: 'var(--text-primary)',
+    } as React.CSSProperties,
+    cardHover: {
+      borderColor: 'var(--primary)',
+      background: 'rgba(0, 240, 255, 0.05)',
+      transform: 'translateY(-2px)',
+      boxShadow: '0 0 20px rgba(0, 240, 255, 0.2)',
+    } as React.CSSProperties,
+    cardHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '1rem',
+    } as React.CSSProperties,
+    iconBox: {
+      width: '48px',
+      height: '48px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: '8px',
+      background: 'radial-gradient(circle, rgba(0, 240, 255, 0.1), rgba(0, 240, 255, 0.05))',
+      color: 'var(--primary)',
+      flexShrink: 0,
+    } as React.CSSProperties,
+    cardTitle: {
+      fontFamily: 'var(--font-display)',
+      fontWeight: 600,
+      color: 'var(--text-primary)',
+      marginBottom: '0.25rem',
+    } as React.CSSProperties,
+    cardHandle: {
+      fontSize: '0.9rem',
+      color: 'var(--text-tertiary)',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap' as const,
+    } as React.CSSProperties,
+    cardAction: {
+      marginTop: '1rem',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      fontSize: '0.9rem',
+      fontWeight: 500,
+      color: 'var(--primary)',
+      transition: 'all 0.3s ease',
+    } as React.CSSProperties,
+    footer: {
+      marginTop: '2rem',
+      textAlign: 'center' as const,
+      fontSize: '0.95rem',
+      color: 'var(--text-secondary)',
+    } as React.CSSProperties,
+    footerLink: {
+      color: 'var(--primary)',
+      textDecoration: 'none',
+      fontWeight: 600,
+      transition: 'all 0.3s ease',
+      cursor: 'pointer',
+    } as React.CSSProperties,
+  }
+
   return (
-    <div className="relative min-w-0">
-      <section className="container py-12 sm:py-16 md:py-20">
+    <div style={styles.wrapper}>
+      <section style={styles.section}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mx-auto max-w-3xl text-center"
+          style={styles.headerContainer}
         >
-          <h1 className="font-display text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl">
-            Connect with the Republic
+          <h1 style={styles.title}>
+            Connect with B.O.D Republic
           </h1>
-          <p className="mt-3 text-zinc-600 sm:text-lg">
-            Follow on socials, drop an email, or say hi. We’re where the energy is.
+          <p style={styles.subtitle}>
+            Get in touch through email, phone, or connect on social media.
           </p>
         </motion.div>
 
@@ -150,26 +259,31 @@ export function Connect() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="mx-auto mt-12 grid max-w-4xl gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3"
+          style={styles.cardsGrid}
         >
           <motion.a
             variants={item}
             href={site.email ? `mailto:${site.email}` : undefined}
-            className="surface-hover group flex min-h-[120px] flex-col justify-between p-5 no-underline sm:p-6"
+            style={styles.card}
+            onMouseEnter={(e) => Object.assign(e.currentTarget.style, styles.cardHover)}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border-color)'
+              e.currentTarget.style.background = 'var(--bg-card)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}
           >
-            <div className="flex items-center gap-3">
-              <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand-100 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
-                <Mail className="size-6" aria-hidden />
+            <div style={styles.cardHeader}>
+              <span style={styles.iconBox}>
+                <Mail size={24} aria-hidden />
               </span>
-              <div className="min-w-0">
-                <div className="font-display font-semibold text-zinc-900">Email</div>
-                <div className="truncate text-sm text-zinc-600 group-hover:text-zinc-900">
-                  {site.email || '—'}
-                </div>
+              <div>
+                <div style={styles.cardTitle}>Email</div>
+                <div style={styles.cardHandle}>{site.email || '—'}</div>
               </div>
             </div>
-            <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand-600">
-              Send a message <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
+            <span style={styles.cardAction}>
+              Send a message <ArrowUpRight size={16} />
             </span>
           </motion.a>
 
@@ -177,33 +291,40 @@ export function Connect() {
             <motion.a
               variants={item}
               href={`tel:${String(site.phone).replace(/\s/g, '')}`}
-              className="surface-hover group flex min-h-[120px] flex-col justify-between p-5 no-underline sm:p-6"
+              style={styles.card}
+              onMouseEnter={(e) => Object.assign(e.currentTarget.style, styles.cardHover)}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-color)'
+                e.currentTarget.style.background = 'var(--bg-card)'
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
             >
-              <div className="flex items-center gap-3">
-                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-emerald-100 text-emerald-600 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
-                  <Phone className="size-6" aria-hidden />
+              <div style={styles.cardHeader}>
+                <span style={styles.iconBox}>
+                  <Phone size={24} aria-hidden />
                 </span>
-                <div className="min-w-0">
-                  <div className="font-display font-semibold text-zinc-900">Phone</div>
-                  <div className="truncate text-sm text-zinc-600 group-hover:text-zinc-900">{site.phone}</div>
+                <div>
+                  <div style={styles.cardTitle}>Phone</div>
+                  <div style={styles.cardHandle}>{site.phone}</div>
                 </div>
               </div>
-              <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-emerald-600">
-                Call or text <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
+              <span style={styles.cardAction}>
+                Call or text <ArrowUpRight size={16} />
               </span>
             </motion.a>
           ) : (
             <motion.div
               variants={item}
-              className="surface flex min-h-[120px] flex-col justify-between p-5 sm:p-6"
+              style={{ ...styles.card, opacity: 0.5, cursor: 'default' }}
             >
-              <div className="flex items-center gap-3">
-                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-zinc-100 text-zinc-400">
-                  <Phone className="size-6" aria-hidden />
+              <div style={styles.cardHeader}>
+                <span style={{ ...styles.iconBox, opacity: 0.5 }}>
+                  <Phone size={24} aria-hidden />
                 </span>
-                <div className="min-w-0">
-                  <div className="font-display font-semibold text-zinc-900">Phone</div>
-                  <div className="text-sm text-zinc-500">Coming soon</div>
+                <div>
+                  <div style={styles.cardTitle}>Phone</div>
+                  <div style={styles.cardHandle}>Coming soon</div>
                 </div>
               </div>
             </motion.div>
@@ -216,19 +337,26 @@ export function Connect() {
               href={card.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`surface-hover group flex min-h-[120px] flex-col justify-between border p-5 no-underline transition-colors sm:p-6 ${card.color}`}
+              style={styles.card}
+              onMouseEnter={(e) => Object.assign(e.currentTarget.style, styles.cardHover)}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-color)'
+                e.currentTarget.style.background = 'var(--bg-card)'
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
             >
-              <div className="flex items-center gap-3">
-                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-zinc-100 text-zinc-600 transition-colors group-hover:bg-white/20 group-hover:text-white">
-                  <card.Icon className="size-6" aria-hidden />
+              <div style={styles.cardHeader}>
+                <span style={styles.iconBox}>
+                  <card.Icon size={24} aria-hidden />
                 </span>
-                <div className="min-w-0">
-                  <div className="font-display font-semibold text-zinc-900 group-hover:text-white">{card.label}</div>
-                  <div className="truncate text-sm text-zinc-600 group-hover:text-white/90">{card.handle}</div>
+                <div>
+                  <div style={styles.cardTitle}>{card.label}</div>
+                  <div style={styles.cardHandle}>{card.handle}</div>
                 </div>
               </div>
-              <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand-600 group-hover:text-white">
-                Follow <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
+              <span style={styles.cardAction}>
+                Follow <ArrowUpRight size={16} />
               </span>
             </motion.a>
           ))}
@@ -238,9 +366,17 @@ export function Connect() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mt-10 text-center text-sm text-zinc-500"
+          style={styles.footer}
         >
-          For partnerships &amp; advertising: <a href={`mailto:${site.partnershipsEmail}`} className="font-medium text-brand-600 hover:underline">{site.partnershipsEmail}</a>
+          For partnerships:{' '}
+          <a
+            href={`mailto:${site.partnershipsEmail}`}
+            style={styles.footerLink}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--primary)')}
+          >
+            {site.partnershipsEmail}
+          </a>
         </motion.p>
       </section>
     </div>

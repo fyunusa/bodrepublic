@@ -11,7 +11,7 @@ export function Advertise() {
 
   useDocumentHead({
     title: 'Advertise with B.O.D Republic',
-    description: 'Partner with B.O.D Republic for authentic partnerships. Reach our engaged community and build meaningful connections.',
+    description: 'Partner with B.O.D Republic for innovative advertising solutions. Reach engaged audiences through authentic content and community-driven campaigns.',
     path: location.pathname,
   })
 
@@ -47,7 +47,7 @@ export function Advertise() {
       {/* Hero Section */}
       <section style={styles.heroSection}>
         <div style={styles.heroGlow}></div>
-        <div style={{...styles.heroContent, maxWidth: '1200px', margin: '0 auto'}}>
+        <div className="container" style={styles.heroContent}>
           <motion.h1
             style={styles.heroTitle}
             initial={{ opacity: 0, y: 30 }}
@@ -62,7 +62,7 @@ export function Advertise() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Connect with our vibrant community and reach engaged audiences through authentic partnerships.
+            Reach highly engaged professionals through AI-powered precision targeting and authentic community-driven campaigns.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
